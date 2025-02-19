@@ -67,8 +67,8 @@ with tab1:
             mime="application/octet-stream"
         )
 
-#with tab2:
-#    st.write("Gráficos")
-#    st.write("Aquí puedes agregar gráficos adicionales")
+with tab2:
+    st.write("Gráficos")
+    st.write("Aquí puedes agregar gráficos adicionales")
 
 # Ejecutar la aplicación con 'streamlit run nombre_del_archivo.py'
