@@ -5,8 +5,8 @@ from pathlib import Path
 import os
 
 # Cargar los datos
-df1 = pl.read_parquet(Path(__file__).parent / "ctas_busqueda_fiserv_20250218.parquet")
-df2 = pl.read_parquet(Path(__file__).parent / "totales_ctas_busqueda_fiserv_20250218.parquet")
+df1 = pl.read_parquet("ctas_busqueda_fiserv_20250218.parquet")
+df2 = pl.read_parquet("totales_ctas_busqueda_fiserv_20250218.parquet")
 
 # Función para contar ofertas
 def count_ofertas(df, columna):
@@ -59,7 +59,7 @@ with tab1:
     st.markdown("</div>", unsafe_allow_html=True)
 
     # Botón para descargar archivo parquet
-    with open(Path(__file__).parent / "ctas_busqueda_fiserv_20250218.parquet", "rb") as file:
+    with open("ctas_busqueda_fiserv_20250218.parquet", "rb") as file:
         st.download_button(
             label="Descargar archivo Parquet",
             data=file,
