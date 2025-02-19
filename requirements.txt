@@ -1,0 +1,9 @@
+shiny
+seaborn
+pandas
+polars
+plotly
+faicons
+shinyswatch
+shinywidgets
+pyarrow
