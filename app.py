@@ -55,7 +55,7 @@ with tab1:
 
     # Centrar la tabla
     st.markdown("<div style='display: flex; justify-content: center;'>", unsafe_allow_html=True)
-    st.dataframe(display_df_pandas.head(8))
+    st.dataframe(display_df_pandas.head(12))
     st.markdown("</div>", unsafe_allow_html=True)
 
     # Botón para descargar archivo parquet
@@ -67,8 +67,8 @@ with tab1:
             mime="application/octet-stream"
         )
 
-with tab2:
-    st.write("Gráficos")
-    st.write("Aquí puedes agregar gráficos adicionales")
+#with tab2:
+#    st.write("Gráficos")
+#    st.write("Aquí puedes agregar gráficos adicionales")
 
 # Ejecutar la aplicación con 'streamlit run nombre_del_archivo.py'
