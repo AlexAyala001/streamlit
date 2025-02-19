@@ -55,7 +55,7 @@ with tab1:
 
     # Centrar la tabla
     st.markdown("<div style='display: flex; justify-content: center;'>", unsafe_allow_html=True)
-    st.dataframe(display_df_pandas.head(12))
+    st.dataframe(display_df_pandas.head(10))
     st.markdown("</div>", unsafe_allow_html=True)
 
     # Botón para descargar archivo parquet
