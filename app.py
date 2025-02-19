@@ -5,16 +5,16 @@ from pathlib import Path
 import os
 
 # Cargar los datos
-df1 = pl.read_parquet("ctas_busqueda_fiserv_20250218.parquet")
-df2 = pl.read_parquet("totales_ctas_busqueda_fiserv_20250218.parquet")
+df1 = pl.read_parquet("ctas_busqueda_fiserv.parquet")
+df2 = pl.read_parquet("totales_ctas_busqueda_fiserv.parquet")
 
 # Función para contar ofertas
 def count_ofertas(df, columna):
     return df[columna][0]
 
 # Configuración de la página de Streamlit
-st.set_page_config(page_title="Reporte Ofertas de Crédito", layout="wide")
-st.title("Reporte Ofertas de Crédito")
+st.set_page_config(page_title="Reporte Crédito Revolvente", layout="wide")
+st.title("Reporte Crédito Revolvente")
 
 # Sidebar para filtros interactivos
 with st.sidebar:
@@ -59,11 +59,11 @@ with tab1:
     st.markdown("</div>", unsafe_allow_html=True)
 
     # Botón para descargar archivo parquet
-    with open("ctas_busqueda_fiserv_20250218.parquet", "rb") as file:
+    with open("ctas_busqueda_fiserv.parquet", "rb") as file:
         st.download_button(
             label="Descargar archivo Parquet",
             data=file,
-            file_name="ctas_busqueda_fiserv_20250218.parquet",
+            file_name="ctas_busqueda_fiserv.parquet",
             mime="application/octet-stream"
         )
 
