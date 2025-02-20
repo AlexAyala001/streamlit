@@ -19,17 +19,32 @@ st.title("Reporte Crédito Revolvente")
 # Sidebar para filtros interactivos
 with st.sidebar:
     st.header("Filtros de búsqueda")
-    cuenta = st.text_input("Número de Cuenta", placeholder="Busca por número de cuenta", key="cuenta_input")
-    fiserv = st.text_input("Número Fiserv", placeholder="Busca por número fiserv", key="fiserv_input")
+    cuenta = st.text_input("Número de Cuenta (separar por comas)", placeholder="Busca por número de cuenta", key="cuenta_input")
+    fiserv = st.text_input("Número Fiserv (separar por comas)", placeholder="Busca por número fiserv", key="fiserv_input")
+    uploaded_file = st.file_uploader("Sube un archivo CSV con números de cuenta o fiserv", type=["csv"])
+
+    cuentas_list = []
+    fiserv_list = []
+
+    if uploaded_file:
+        df_uploaded = pd.read_csv(uploaded_file)
+        if "idcuentabrm__c" in df_uploaded.columns:
+            cuentas_list = df_uploaded["idcuentabrm__c"].astype(str).tolist()
+        if "no_fiserv__c" in df_uploaded.columns:
+            fiserv_list = df_uploaded["no_fiserv__c"].astype(str).tolist()
 
 # Filtro de DataFrame
 def filtrado1_df():
+    filt_df = df1
     if cuenta:
-        filt_df = df1.filter(pl.col("idcuentabrm__c") == cuenta)
-    elif fiserv:
-        filt_df = df1.filter(pl.col("no_fiserv__c") == fiserv)
-    else:
-        filt_df = df1
+        cuentas_list.extend([c.strip() for c in cuenta.split(',')])
+    if fiserv:
+        fiserv_list.extend([f.strip() for f in fiserv.split(',')])
+
+    if cuentas_list:
+        filt_df = filt_df.filter(pl.col("idcuentabrm__c").is_in(cuentas_list))
+    if fiserv_list:
+        filt_df = filt_df.filter(pl.col("no_fiserv__c").is_in(fiserv_list))
     return filt_df
 
 # Mostrar métricas
