@@ -90,7 +90,7 @@ with tab1:
         )
 
 with tab2:
-    st.write("Activas Fiserv con saldo")
+    st.write("Activas Fiserv con oferta y saldo actual mayor a 0")
     display_df = df3
     display_df_pandas = display_df.to_pandas()
 
