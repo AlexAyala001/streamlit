@@ -48,7 +48,7 @@ def filtrado1_df():
     return filt_df
 
 # Mostrar métricas
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4, col5 =st.columns(5)
 
 with col1:
     st.metric(label="Total cuentas", value=f"{count_ofertas(df2, 'Total_cuentas'):,}")
@@ -58,6 +58,12 @@ with col2:
 
 with col3:
     st.metric(label="Distintas a Activo", value=f"{count_ofertas(df2, 'Distintas_Activo'):,}")
+
+with col4:
+    st.metric(label="Activas con oferta", value=f"{count_ofertas(df2, 'Activas_fiserv_oferta'):,}")
+
+with col5:
+    st.metric(label="Activas con oferta y saldo", value=f"{count_ofertas(df2, 'Activas_fiserv_oferta_saldo'):,}")
 
 # Tabs para el resumen
 tab1, tab2 = st.tabs(["Tabla Histórico", "Gráficos"])
