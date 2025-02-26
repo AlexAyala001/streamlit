@@ -7,6 +7,7 @@ import os
 # Cargar los datos
 df1 = pl.read_parquet("ctas_busqueda_fiserv.parquet")
 df2 = pl.read_parquet("totales_ctas_busqueda_fiserv.parquet")
+df3 = pl.read_parquet("activas_con_oferta_con_compra.parquet")
 
 # Función para contar ofertas
 def count_ofertas(df, columna):
@@ -66,10 +67,10 @@ with col5:
     st.metric(label="Activas con oferta y saldo", value=f"{count_ofertas(df2, 'Activas_fiserv_oferta_saldo'):,}")
 
 # Tabs para el resumen
-tab1, tab2 = st.tabs(["Tabla Histórico", "Gráficos"])
+tab1, tab2 = st.tabs(["Crédito Revolvente", "Activas Fiserv"])
 
 with tab1:
-    st.write("Tabla Histórico")
+    st.write("Crédito Revolvente")
 
     display_df = filtrado1_df().select(['idcuentabrm__c', 'no_fiserv__c','id', 'estatus__c', 'entidad__c', 'lastmodifieddate', 'createddate', 'no_tarjeta_dumi__c', 'partition_0'])
     display_df_pandas = display_df.to_pandas()
@@ -89,7 +90,23 @@ with tab1:
         )
 
 with tab2:
-    st.write("Gráficos")
+    st.write("Activas Fiserv con saldo")
+    display_df = df3
+    display_df_pandas = display_df.to_pandas()
+
+    # Centrar la tabla
+    st.markdown("<div style='display: flex; justify-content: center;'>", unsafe_allow_html=True)
+    st.dataframe(display_df_pandas.head(10))
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    # Botón para descargar archivo parquet
+    with open("ctas_busqueda_fiserv.parquet", "rb") as file:
+        st.download_button(
+            label="Descargar archivo Parquet",
+            data=file,
+            file_name="activas_con_oferta_con_compra.parquet",
+            mime="application/octet-stream"
+        )
     st.write("Aquí puedes agregar gráficos adicionales")
 
 # Ejecutar la aplicación con 'streamlit run nombre_del_archivo.py'
