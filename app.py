@@ -64,7 +64,10 @@ with col4:
     st.metric(label="Activas con oferta", value=f"{count_ofertas(df2, 'Activas_fiserv_oferta'):,}")
 
 with col5:
-    st.metric(label="Activas con oferta y saldo", value=f"{count_ofertas(df2, 'Activas_fiserv_oferta_saldo'):,}")
+    st.metric(label="Activas con oferta y compra", value=f"{count_ofertas(df2, 'Activas_fiserv_oferta_compra'):,}")
+
+with col6:
+    st.metric(label="Activas con estatus Z", value=f"{count_ofertas(df2, 'Activas_fiserv_estatus_Z'):,}")
 
 # Tabs para el resumen
 tab1, tab2 = st.tabs(["Crédito Revolvente", "Activas Fiserv"])
