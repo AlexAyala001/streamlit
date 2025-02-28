@@ -49,7 +49,7 @@ def filtrado1_df():
     return filt_df
 
 # Mostrar métricas
-col1, col2, col3, col4, col5 =st.columns(5)
+col1, col2, col3, col4, col5, col6 =st.columns(6)
 
 with col1:
     st.metric(label="Total cuentas", value=f"{count_ofertas(df2, 'Total_cuentas'):,}")
