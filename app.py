@@ -120,8 +120,8 @@ with tab2:
     grafico_df['info_day'] = pd.to_datetime(grafico_df['info_day'])
 
     # Calcular rango dinámico
-    y_min = grafico_df[eje_y_opcion].min() * 0.95  # 10% debajo del mínimo
-    y_max = grafico_df[eje_y_opcion].max() * 1.05  # 10% arriba del máximo
+    y_min = grafico_df[eje_y_opcion].min() * 0.99  # 10% debajo del mínimo
+    y_max = grafico_df[eje_y_opcion].max() * 1.01  # 10% arriba del máximo
 
     # Crear gráfico dinámico de líneas con rango ajustado
     chart = alt.Chart(grafico_df).mark_line(point=True).encode(
