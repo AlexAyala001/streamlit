@@ -139,6 +139,24 @@ with tab2:
     ).interactive()
 
     st.altair_chart(chart, use_container_width=True)
+    # Gráfica de barras
+    st.subheader("Distribución de estatus de cuentas activas")
+    status_counts = df3["status"].value_counts().reset_index()
+    status_counts.columns = ["status", "conteo"]
+    status_counts = status_counts.sort_values(by="conteo", ascending=False)
+    
+    bar_chart = alt.Chart(status_counts).mark_bar().encode(
+        x=alt.X("conteo:Q", title="Cantidad"),
+        y=alt.Y("status:N", title="Estatus", sort="-x"),
+        tooltip=["status", "conteo"]
+    ).properties(
+        title="Conteo de cuentas por estatus",
+        width=800,
+        height=400
+    )
+    
+    st.altair_chart(bar_chart, use_container_width=True)
+
     # Mostramos el DataFrame
     display_df = df3
     display_df_pandas = display_df
